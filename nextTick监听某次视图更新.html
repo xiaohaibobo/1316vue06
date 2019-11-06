@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="随即改变颜色" @click='changeColor'>
+        <p :style='{background:color}' ref="oP">{{msg}}</p>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'p标签',
+            color: ''
+        },
+        methods: {
+            changeColor() {
+                let r = Math.floor(Math.random() * 256);
+                let g = Math.floor(Math.random() * 256);
+                let b = Math.floor(Math.random() * 256);
+                this.color = `rgb(${r},${g},${b})`;
+                console.log(this.color);
+                this.$nextTick(() => {
+                    console.log('视图更新后', this.$refs.oP.style.background)
+                })
+            }
+        },
+    })
+</script>
+
+</html>
