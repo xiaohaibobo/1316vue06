@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge"
+    >
+    <title>Document</title>
+    <style type="text/css">
+        div>div>div {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #000;
+            /* display: none; */
+        }
+
+        div.active {
+            display: block;
+        }
+
+        input.active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- <tab></tab> -->
+        <!-- <tab></tab> -->
+    </div>
+
+</body>
+<script
+    src="../js/vue.js"
+    type="text/javascript"
+    charset="utf-8"
+></script>
+<script>
+
+    //通过以下data数据实现两个选项卡.每个选项卡是一个组件.(tab1用news1,tab2用new2)
+    //选项卡的按钮数依据news的length决定.
+    let tab1 = {
+        template: `
+            <div id='tab1'>
+                 <input v-for='(d,i) in news1' type="button"  :class='{active:index1 == i}' :value='d.btn'  @click='fn1(i)' />
+			     <div v-for='(d,i) in news1' v-if='index1 == i'>{{d.content}}</div>
+            </div>
+        `,
+        props: ['news1'],
+        data() {
+            return {
+                index1: 0
+            }
+        },
+        methods: {
+            fn1(i) {
+                this.index1 = i;
+            },
+        },
+
+    };
+
+    let tab2 = {
+        template: `
+            <div>
+                 <input v-for='(d,i) in news2' type="button"  :class='{active:index2 == i}' :value='d.btn' @click='fn2(i)' />
+			     <div v-for='(d,i) in news2' v-if='index2 == i'>{{d.content}}</div>
+            </div>
+        `,
+        props: ['news2'],
+        data() {
+            return {
+                index2: 0
+            }
+        },
+        methods: {
+            fn2(i) {
+                this.index2 = i;
+            },
+        },
+
+    };
+
+
+
+    let App = {
+        template: `
+            <div id='app'>
+                <div is = 'tab1' :news1='news1'>
+                 
+                </div>
+                <div is = 'tab2' :news2='news2'>
+                 
+                </div>
+            </div>
+        `,
+        components: {
+            tab1,tab2
+        },
+        data() {
+            return {
+
+                news1: [
+                    { btn: '新闻', content: '杨幂离婚了卧槽' },
+                    { btn: '号外', content: '范冰冰分手了卧槽' },
+                    { btn: '未解之谜', content: '什么时候脱衣服' },
+                ],
+                // index2: 0,
+                news2: [
+                    { btn: '新闻', content: '杨幂离婚了卧槽' },
+                    { btn: '号外', content: '范冰冰分手了卧槽' },
+                    { btn: '未解之谜', content: '什么时候脱衣服' },
+                    { btn: '世界性难题', content: '工资达到800元' },
+                    { btn: '傻傻分不清', content: '先穿裤子还是先穿鞋子' },
+                ],
+            }
+        },
+       
+    }
+
+    let vm = new Vue({
+        el: '#app',
+        render: h => h(App),
+        components: { App }
+    })
+
+    // var data={
+    //     news1:[
+    //         {
+    //             btn:'新闻',
+    //             content:'杨幂离婚了卧槽'
+    //         },
+    //         {
+    //             btn:'号外',
+    //             content:'范冰冰分手了卧槽'
+    //         },
+    //         {
+    //             btn:'未解之谜',
+    //             content:'什么时候脱衣服'
+    //         },
+    //     ],
+    //     news2:[
+    //         {
+    //             btn:'新闻',
+    //             content:'杨幂离婚了卧槽'
+    //         },
+    //         {
+    //             btn:'号外',
+    //             content:'范冰冰分手了卧槽'
+    //         },
+    //         {
+    //             btn:'未解之谜',
+    //             content:'什么时候脱衣服'
+    //         },
+    //         {
+    //             btn:'世界性难题',
+    //             content:'工资达到800元'
+    //         },
+    //         {
+    //             btn:'傻傻分不清',
+    //             content:'先穿裤子还是先穿鞋子'
+    //         },
+    //     ],
+    // }
+
+
+
+</script>
+
+</html>

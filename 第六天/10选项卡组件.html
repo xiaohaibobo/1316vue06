@@ -80,8 +80,8 @@
     let tab1 = {
         template: `
         <div>
-             <input type="button" :value="d.btn" v-for='(d,i) in arr1' @click='fun1(i)' :class='i==index?"active":""'>
-             <div v-for='(d,i) in arr1' :class='i==index?"active":""'>{{d.content}}</div>
+            <input type="button" :value="d.btn" v-for='(d,i) in arr1' @click='fun1(i)' :class='i==index?"active":""'>
+            <div v-for='(d,i) in arr1' :class='i==index?"active":""'>{{d.content}}</div>
         </div>
         `,
         data() {
@@ -99,8 +99,8 @@
     let tab2 = {
         template: `
         <div>
-                <input type="button" :value="d.btn" v-for='(d,i) in arr2' @click='fun2(i)' :class='i==index?"active":""'>
-             <div v-for='(d,i) in arr2' :class='i==index?"active":""'>{{d.content}}</div>
+            <input type="button" :value="d.btn" v-for='(d,i) in arr2' @click='fun2(i)' :class='i==index?"active":""'>
+            <div v-for='(d,i) in arr2' :class='i==index?"active":""'>{{d.content}}</div>
         </div>
         `,
         data() {
@@ -108,7 +108,7 @@
                 arr2: data.news2,
                 index: ''
             }
-        },methods: {
+        }, methods: {
             fun2(i) {
                 this.index = i
             }
